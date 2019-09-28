@@ -65,9 +65,6 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC)){
 
 $anzahl = $_GET['anzahl'];
 
-if(!is_int($anzahl)){
-	$anzahl = 12;
-}
 
 if((time()-$TIMESPAMP) > 300){
 	$LastID += 1;
@@ -110,11 +107,14 @@ if((time()-$TIMESPAMP) > 300){
 	//echo "<br/>Time!";
 }
 
+	
 
 	if($anzahl == 0){
 		$query="SELECT * from TANKSTELLEN_DATEN;";
-	}else{
+	}else if($anzahl >= 1){
 		$query="SELECT * from TANKSTELLEN_DATEN ORDER BY ID DESC LIMIT ".$anzahl.";";	
+	}else{
+		$query="SELECT * from TANKSTELLEN_DATEN ORDER BY ID DESC LIMIT 12;";
 	}
 
 	$ret = $db->query($query);

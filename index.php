@@ -30,6 +30,7 @@
 				</tr>
 	</table>
 	<hr/>
+	<p class="cWhite">Project on <a class="cWhite" href="https://github.com/BukkitGerman/Tankstellen_Application">Github</a></p>
 	<script type="text/javascript">
 		let table = document.querySelector("table")
 
