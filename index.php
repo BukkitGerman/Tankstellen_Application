@@ -14,9 +14,9 @@
 
 	
 	<script type="text/javascript">
-		if('serviceWorker' in navigator) {
+		/*if('serviceWorker' in navigator) {
     		navigator.serviceWorker.register('./worker.js');
-		}
+		}*/
 	</script>
 </head>
 <body>
@@ -33,7 +33,7 @@
 	<script type="text/javascript">
 		let table = document.querySelector("table")
 
-		fetch('./data.php')
+		fetch('./data.php?anzahl=12')
 		.then(response => response.json())
 		.then(data => {
 			data["stations"].forEach(station => {
@@ -56,6 +56,7 @@
 			})
 		})
 	</script>
+	<script src="./js/app.js"></script>
 </body>
 </html>
 

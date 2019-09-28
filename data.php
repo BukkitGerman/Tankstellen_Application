@@ -14,7 +14,7 @@ if(!$db) {
 
 }
 
-include 'key.phpx';
+include 'key.php';
 
 $query = "CREATE TABLE IF NOT EXISTS TANKSTELLEN_DATEN(
 ID INT PRIMARY KEY	NOT NULL,
@@ -63,6 +63,11 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC)){
 	$LastID = $row['ID'];
 }
 
+$anzahl = $_GET['anzahl'];
+
+if(!is_int($anzahl)){
+	$anzahl = 12;
+}
 
 if((time()-$TIMESPAMP) > 300){
 	$LastID += 1;
@@ -74,11 +79,7 @@ if((time()-$TIMESPAMP) > 300){
 	foreach ($data["stations"] as $key => $value) {
 		$eintreage += 1;
 
-		$anzahl = $_GET['anzahl'];
-
-		if(!is_int($anzahl)){
-			$anzahl = 12;
-		}
+		
 
 		$query = "INSERT INTO TANKSTELLEN_DATEN (ID, NAME, TIMESPAMP, PRICE, PLACE, STREET, LAT, LNG, DIST, ISOPEN, BRAND) VALUES ('".$LastID."','".$value['name']."','".time()."', '".$value['price']."', '".$value['place']."', '".$value['street']."', '".$value['lat']."', '".$value['lng']."', '".$value['dist']."', '".$value['isOpen']."', '".$value['brand']."');";
 
