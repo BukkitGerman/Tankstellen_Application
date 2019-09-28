@@ -1,0 +1,16 @@
+{
+  "background_color": "gray",
+  "theme_color": "#e1b12c",
+  "description": "...",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "./image/diesel.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "Tankstellen Preise",
+  "short_name": "Tank-Preise",
+  "start_url": "/Tankapp/"
+}
