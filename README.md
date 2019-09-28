@@ -1,6 +1,6 @@
 # Tankstellen_Application
 
-<table>
+<table style="background: gray;">
 	<tr>
 		<th>To-Do List</th>
 	</tr>
