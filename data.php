@@ -14,13 +14,7 @@ if(!$db) {
 
 }
 
-$lat = "50.473880";
-$lng = "6.471066";
-$rad = "15";
-$sort = "price";
-$type = "diesel";
-$apikey = "885d8496-1f72-53e5-53b9-df471167af8f";
-
+include 'key.phpx';
 
 $query = "CREATE TABLE IF NOT EXISTS TANKSTELLEN_DATEN(
 ID INT PRIMARY KEY	NOT NULL,
@@ -80,6 +74,11 @@ if((time()-$TIMESPAMP) > 300){
 	foreach ($data["stations"] as $key => $value) {
 		$eintreage += 1;
 
+		$anzahl = $_GET['anzahl'];
+
+		if(!is_int($anzahl)){
+			$anzahl = 12;
+		}
 
 		$query = "INSERT INTO TANKSTELLEN_DATEN (ID, NAME, TIMESPAMP, PRICE, PLACE, STREET, LAT, LNG, DIST, ISOPEN, BRAND) VALUES ('".$LastID."','".$value['name']."','".time()."', '".$value['price']."', '".$value['place']."', '".$value['street']."', '".$value['lat']."', '".$value['lng']."', '".$value['dist']."', '".$value['isOpen']."', '".$value['brand']."');";
 
@@ -111,7 +110,12 @@ if((time()-$TIMESPAMP) > 300){
 }
 
 
-	$query="SELECT * from TANKSTELLEN_DATEN ORDER BY ID DESC LIMIT 12;";
+	if($anzahl == 0){
+		$query="SELECT * from TANKSTELLEN_DATEN;";
+	}else{
+		$query="SELECT * from TANKSTELLEN_DATEN ORDER BY ID DESC LIMIT ".$anzahl.";";	
+	}
+
 	$ret = $db->query($query);
 
 
