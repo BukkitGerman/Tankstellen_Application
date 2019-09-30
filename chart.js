@@ -9,7 +9,7 @@ let groupBy = (xs, expr) => {
 
 let sum = 0;
 let count = 0;
-fetch('./data.php?anzahl=12')
+fetch('./data.php?anzahl=0')
 .then(response => response.json())
 .then(data => groupBy(data["stations"], station => {
     return station["NAME"]+" "+station["ORT"]
