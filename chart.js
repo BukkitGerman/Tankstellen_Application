@@ -7,14 +7,19 @@ let groupBy = (xs, expr) => {
     }, {})
 }
 
-fetch('./data.php?anzahl=0')
+let sum = 0;
+let count = 0;
+fetch('./data.php?anzahl=100')
 .then(response => response.json())
 .then(data => groupBy(data["stations"], station => {
     return station["NAME"]+" "+station["ORT"]
 }))
 .then(station => {
     console.log(station)
+    console.log(station["TOTAL KALL undefined"][0].PRICE)
 })
+
+
 
 
 
