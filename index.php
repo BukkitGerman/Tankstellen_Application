@@ -7,7 +7,7 @@
 	<meta name="theme-color" content="#e1b12c">
 	<link rel="manifest" href="tankapp.webmanifest">
 	<link rel="manifest" href="tankapp.json">
-	<link rel="apple-touch-icon" href="./image/disel.png">
+	<link rel="apple-touch-icon" href="./image/diesel.png">
 	<link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="./image/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -19,6 +19,12 @@
 		}*/
 	</script>
 </head>
+<nav>
+	<div class="nav">
+		<a href="">Overview</a>
+		<a href="">Chart</a>
+	</div>
+</nav>
 <body>
 	<table cellspacing=10px>
 				<tr class=head>
