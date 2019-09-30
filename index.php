@@ -5,13 +5,14 @@
 	<title>Tankstellen Preise</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#e1b12c">
+	<link rel="stylesheet" type="text/css" href="./css/viewport.css">
 	<link rel="manifest" href="tankapp.webmanifest">
 	<link rel="manifest" href="tankapp.json">
 	<link rel="apple-touch-icon" href="./image/diesel.png">
 	<link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="./image/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="style.css">
-
+	<link rel="stylesheet" type="text/css" href="./css/nav.css">
 	
 	<script type="text/javascript">
 		/*if('serviceWorker' in navigator) {
@@ -21,8 +22,7 @@
 </head>
 <nav>
 	<div class="nav">
-		<a href="">Overview</a>
-		<a href="">Chart</a>
+		<a href="./chart.php">Chart</a>
 	</div>
 </nav>
 <body>
