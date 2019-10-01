@@ -1,10 +1,9 @@
 let groupBy = (xs, expr) => {
-    return xs.reduce(function(rv, x) {
-        let key = expr(x)
-        debugger
-        (rv[key] = rv[key] || []).push(x)
+    return xs.reduce(function(expr, rv, x) {
+        var key = expr(x)
+        ;(rv[key] = rv[key] || []).push(x)
         return rv
-    }, {})
+    }.bind(this, expr), {})
 }
 
 let sum = 0;
@@ -12,17 +11,52 @@ let count = 0;
 fetch('./data.php?anzahl=0')
 .then(response => response.json())
 .then(data => groupBy(data["stations"], station => {
-    return station["NAME"]+" "+station["ORT"]
+    return station["NAME"]+", "+station["PLACE"]
 }))
-.then(station => {
-    console.log(station)
-    console.log(station["TOTAL KALL undefined"][0].PRICE)   
+.then(stations => {
+    console.log(stations)
+    console.log(stations["TOTAL KALL, KALL"][0].PRICE)
+
+    Object.keys(stations).forEach(function(station){
+        let s = stations[station]
+        //console.log(s)
+        //console.log(s[0].PRICE)
+        console.log(station, durschnittProStunde(s))
+    })
 })
+
+
+function durschnittProStunde(obj){
+    
+
+    let wholetime = []
+    for(let m = 0; m <= 23; m++){  
+    let time = []
+        for(let i = 0; i < obj.length; i++){
+            let date = new Date(obj[i].TIMESPAMP*1000)
+            if(date.getHours() == m){
+                time.push(obj[i].PRICE)
+            }
+        }
+        let result = 0
+        let summe = 0  
+        for(let n = 0; n < time.length; n++){
+            summe += time[n];
+            result = summe/(n+1)
+        }
+        wholetime.push(result)
+    }
+    return wholetime;
+    
+}
 
 
 let he = window.innerHeight
 he -= (window.innerHeight)/2.5
 document.getElementById("chartcv").style.height = he+'px'
+
+
+
 
 let time = ['05:00',
             '05:30',
