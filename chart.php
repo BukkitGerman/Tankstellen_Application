@@ -14,23 +14,6 @@
 	</div>
 </nav>
 <body>
-	<form method="POST">
-		<b>Wählen Sie Eine Tankstelle:</b>
-		<select name="tankstelle" id="tankstelle" size="1" onchange="newSelection(event)">
-			<option>Tankstelle Im Hahnborn, Stadtkyll</option>
-			<option>Bauzentrale Schumacher GmbH, Kall</option>
-			<option>NETTERSHEIM, SCHWALBENWEG, NETTERSHEIM</option>
-			<option>trinkkontor Bitburger Bier GmbH, Hellenthal</option>
-			<option>Esso Tankstelle, HELLENTHAL</option>
-			<option>Aral Tankstelle, Stadtkyll</option>
-			<option>Aral Tankstelle, Blankenheim</option>
-			<option>Tank-Wasch-Punkt Karls Simone Viell, Kall</option>
-			<option>Tankstelle Finder Gbr, Kall</option>
-			<option>Aral Tankstelle, Schleiden</option>
-			<option>TOTAL KALL, KALL</option>
-			<option>SCHLEIDEN, GEMUENDER STR, SCHLEIDEN</option>
-		</select>
-	</form>
 	<div id="chartcv">
 		<canvas id="chart" style="position: relative; height: 50vh"></canvas>
 	</div>
