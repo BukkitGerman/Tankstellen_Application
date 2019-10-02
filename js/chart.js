@@ -1,3 +1,5 @@
+let ctx = document.getElementById('chart').getContext('2d');
+
 let groupBy = (xs, expr) => {
     return xs.reduce(function(expr, rv, x) {
         var key = expr(x)
@@ -6,6 +8,9 @@ let groupBy = (xs, expr) => {
     }.bind(this, expr), {})
 }
 
+
+let allnames = [];
+let allrs = [];
 let sum = 0;
 let count = 0;
 fetch('./data.php?anzahl=0')
@@ -21,9 +26,43 @@ fetch('./data.php?anzahl=0')
         let s = stations[station]
         //console.log(s)
         //console.log(s[0].PRICE)
-        console.log(station, durschnittProStunde(s))
+        allrs.push(durschnittProStunde(s))
+        allnames.push(station)
+        console.log(durschnittProStunde(s))
+
     })
+    let allDatasets =  []
+    function getAlldatasets(){
+        for(let i = 0; i < 12; i++){
+            let color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16))
+            allDatasets.push({label: allnames[i+1], data: allrs[i+1], backgroundColor: color, borderColor: color, fill: false, lineTension: 0, radius: 5}) 
+        }
+        return allDatasets;
+    }
+
+    
+    console.log(allDatasets)
+
+    let myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: time,
+        datasets: getAlldatasets()
+    },
+      options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+});
 })
+
+let sel = document.getElementById('tankstelle')
+
+sel.addEventListener("change", function(){
+    console.log(sel.value)
+})
+
+
 
 
 function durschnittProStunde(obj){
@@ -50,7 +89,7 @@ function durschnittProStunde(obj){
     
 }
 
-
+//Size Settings
 let he = window.innerHeight
 he -= (window.innerHeight)/2.5
 document.getElementById("chartcv").style.height = he+'px'
@@ -58,44 +97,30 @@ document.getElementById("chartcv").style.height = he+'px'
 
 
 
-let time = ['05:00',
-            '05:30',
+let time = ['00:00',
+            '01:00',
+            '02:00',
+            '03:00',
+            '04:00',
+            '05:00',
             '06:00',
-            '06:30',
             '07:00',
-            '07:30',
             '08:00',
-            '08:30',
             '09:00',
-            '09:30',
             '10:00',
-            '10:30',
             '11:00',
-            '11:30',
             '12:00',
-            '12:30',
             '13:00',
-            '13:30',
             '14:00',
-            '14:30',
             '15:00',
-            '15:30',
             '16:00',
-            '16:30',
             '17:00',
-            '17:30',
             '18:00',
-            '18:30',
             '19:00',
-            '19:30',
             '20:00',
-            '20:30',
             '21:00',
-            '21:30',
             '22:00',
-            '22:30',
-            '23:00',
-            '23:30',
+            '23:00'
             ]
 let testTankstellenPreise = ['1.22',
                              '1.23',
@@ -177,34 +202,5 @@ let testTankstellenPreise2 =['1.25',
                              '1.27',
 ]
 
-let ctx = document.getElementById('chart').getContext('2d');
-let myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: time,
-    datasets: [
-      {
-        label: "Tankstelle 1",
-        data: testTankstellenPreise,
-        backgroundColor: "blue",
-        borderColor: "lightblue",
-        fill: false,
-        lineTension: 0,
-        radius: 5
-      },
-      {
-        label: "Tankstelle 2",
-        data: testTankstellenPreise2,
-        backgroundColor: "green",
-        borderColor: "lightgreen",
-        fill: false,
-        lineTension: 0,
-        radius: 5
-      }
-    ]
-    },
-      options: {
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-});
+
+
