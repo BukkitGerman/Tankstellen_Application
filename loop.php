@@ -23,13 +23,14 @@
 		setInterval(function(){
 			document.getElementById("data").innerHTML = "Last Refresh at: " + time;
 			console.log("Tracked new Data.")
-			fetch('./data.php?anzahl=12')
+			fetch('./data.php?anzahl=1')
 			.then(response => response.json())
 			.then(data => {
 				data["stations"].forEach(station => {
 					arr.push(station)
 				})
 				console.log(arr)
+				arr = [];
 			})
 		}, 300000);
 	}
